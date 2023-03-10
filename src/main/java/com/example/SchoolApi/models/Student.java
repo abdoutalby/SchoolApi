@@ -3,13 +3,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
 public class Student {
-    @Id
+    @UUID
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
     private String name;
