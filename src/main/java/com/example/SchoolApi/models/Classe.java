@@ -1,12 +1,21 @@
 package com.example.SchoolApi.models;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,3 +31,4 @@ public class Class {
     private ArrayList<Student> students=new ArrayList<>();
 
 }
+
