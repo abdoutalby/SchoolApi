@@ -4,6 +4,7 @@ import com.example.SchoolApi.models.Student;
 import com.example.SchoolApi.models.Teacher;
 import com.example.SchoolApi.services.Student.StuService;
 import com.example.SchoolApi.services.Teacher.TeacherService;
+import com.example.SchoolApi.utils.AddStudentRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -39,5 +40,16 @@ public class TeacherController {
     @GetMapping("/getByNom/{nom}")
     ResponseEntity<?> getByNom(@PathVariable("nom") String nom){return teacherService.findByNom(nom);}
 
+    @PatchMapping("addStudent")
+    ResponseEntity<?> addStudent(@RequestBody AddStudentRequest addStudentRequest){return teacherService.addStudent(addStudentRequest);}
+
+    @GetMapping("/getAllStudent/{idTeacher}")
+    ResponseEntity<?> getAllStudent(@PathVariable("idTeacher") Long id){return teacherService.getAllStudent(id);}
+
+    @PatchMapping("deleteStudent")
+    ResponseEntity<?> deleteStudent(@RequestBody AddStudentRequest addStudentRequest){return teacherService.deleteStudent(addStudentRequest);}
+
+    @GetMapping("/getAllClasses/{idTeacher}")
+    ResponseEntity<?> getAllClasses(@PathVariable("idTeacher") Long id){return teacherService.getAllClasses(id);}
 
 }

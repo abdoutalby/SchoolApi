@@ -72,4 +72,16 @@ public class StuService implements StuInterface{
         else
             return ResponseEntity.ok("student with name "+nom+" dosn't found");
     }
+
+    @Override
+    public ResponseEntity<?> getAllTeachers(Long idStudent) {
+        Optional<Student> student=stuRepo.findById(idStudent);
+        if (student.isPresent()){
+            Student student1=student.get();
+           return ResponseEntity.ok(student1.getTeachers());
+
+        }
+        else
+            return ResponseEntity.ok("student not found");
+    }
 }

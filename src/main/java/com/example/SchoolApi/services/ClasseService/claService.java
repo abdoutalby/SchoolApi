@@ -12,4 +12,5 @@ public interface claService {
     ResponseEntity<?> findByNiveau(String niveau);
     ResponseEntity<?> findByNom(String nom);
     ResponseEntity<?> getAllStudent(String nom);
+
 }

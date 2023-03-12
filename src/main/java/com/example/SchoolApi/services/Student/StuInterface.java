@@ -10,4 +10,5 @@ public interface StuInterface {
     ResponseEntity<?> update(Student student,Long id);
     ResponseEntity<?> delete(Long id);
     ResponseEntity<?> findByName(String nom);
+    ResponseEntity<?> getAllTeachers(Long idStudent);
 }

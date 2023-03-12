@@ -34,4 +34,7 @@ public class StuController {
 
     @GetMapping("getByName/{nom}")
     ResponseEntity<?> getByName(@PathVariable("nom") String nom){return stuService.findByName(nom);}
+
+    @GetMapping("getAllTeachers/{idSt}")
+    ResponseEntity<?> getAllTeacher(@PathVariable("idSt") Long idSt){return stuService.getAllTeachers(idSt);}
 }
