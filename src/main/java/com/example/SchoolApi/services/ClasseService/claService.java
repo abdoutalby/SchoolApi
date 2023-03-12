@@ -6,7 +6,9 @@ import org.springframework.http.ResponseEntity;
 public interface claService {
     ResponseEntity<?> getAll();
     ResponseEntity<?> getById(Long id);
-    ResponseEntity<?> create(Class classe);
+    ResponseEntity<?> add(Class classe);
     ResponseEntity<?> update(Class classe, Long id);
     ResponseEntity<?> delete(Long id);
+    ResponseEntity<?> findByNom(String Nom);
+
 }

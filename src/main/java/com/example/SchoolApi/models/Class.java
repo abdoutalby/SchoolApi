@@ -1,9 +1,10 @@
 package com.example.SchoolApi.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+
 import jakarta.persistence.Id;
 
 import jakarta.persistence.*;
@@ -11,10 +12,11 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CollectionType;
 
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -27,8 +29,12 @@ public class Class {
     private Long id;
     private String nom;
     private String niveau;
-    @OneToMany
-    private ArrayList<Student> students=new ArrayList<>();
+    @OneToMany(mappedBy = "userClass")
+    @JsonIgnore
+    private List<Student> students= new ArrayList<>();
+    @ManyToMany
+    @JoinColumn(name = "teachers_id_teacher")
+    private List<Teacher> teachers=new ArrayList<>();
 
 }
 

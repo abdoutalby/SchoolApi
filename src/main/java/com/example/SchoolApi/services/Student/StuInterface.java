@@ -9,5 +9,5 @@ public interface StuInterface {
     ResponseEntity<?> add(Student student);
     ResponseEntity<?> update(Student student,Long id);
     ResponseEntity<?> delete(Long id);
-    ResponseEntity<?> findByNomProd(String nom);
+    ResponseEntity<?> findByName(String name);
 }
