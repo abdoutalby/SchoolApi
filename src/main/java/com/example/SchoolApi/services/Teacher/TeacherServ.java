@@ -13,4 +13,7 @@ public interface TeacherServ {
     ResponseEntity<?> findByNom(String Nom);
     ResponseEntity<?> addStu (Student id,Long idt);
 
+    ResponseEntity<?> findByEmail(String email);
+    ResponseEntity<?> findByNom(String nom);
+
 }
