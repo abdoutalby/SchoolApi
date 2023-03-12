@@ -5,8 +5,7 @@ import com.example.SchoolApi.repositories.StuRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,6 +13,7 @@ public class StuService implements StuInterface{
 
     @Autowired
     StuRepo stuRepo;
+
     @Override
     public ResponseEntity<?> getAll() {
         return ResponseEntity.ok(stuRepo.findAll());
@@ -22,15 +22,20 @@ public class StuService implements StuInterface{
     @Override
     public ResponseEntity<?> getById(Long id) {
         Optional<Student> student=stuRepo.findById(id);
-        if(student.isPresent())
+        if(student.isPresent()) {
             return ResponseEntity.ok(student.get());
-        else
-            return ResponseEntity.ok("student dosn't exist");
+        }
+        else {
+            return ResponseEntity.ok("student dosn't found");
+        }
     }
 
     @Override
-    public ResponseEntity<?> add(Student student) {
-        return ResponseEntity.ok(stuRepo.save(student));
+    public ResponseEntity<?> add(Student addStudent) {
+
+            return ResponseEntity.ok(stuRepo.save(addStudent));
+
+
     }
 
     @Override
@@ -38,14 +43,14 @@ public class StuService implements StuInterface{
         Optional<Student> student=stuRepo.findById(id);
         if(student.isPresent()) {
             Student updated = student.get();
-            updated.setAge(upStudent.getAge());
-            updated.setName(upStudent.getName());
+            updated.setAgeStu(upStudent.getAgeStu());
+            updated.setNameStu(upStudent.getNameStu());
             updated.setUserClass(upStudent.getUserClass());
             stuRepo.save(updated);
             return ResponseEntity.ok(updated);
         }
         else
-            return ResponseEntity.ok("student dosn't exist");
+            return ResponseEntity.ok("student dosn't found");
     }
 
     @Override
@@ -53,19 +58,18 @@ public class StuService implements StuInterface{
         Optional<Student> student=stuRepo.findById(id);
         if(student.isPresent()) {
             stuRepo.deleteById(id);
-            return ResponseEntity.ok("student deleted");
+            return ResponseEntity.ok("student "+student.get().getNameStu()+" deleted");
+        }else{
+            return ResponseEntity.ok("student dosn't found");
         }
-
-        else
-            return ResponseEntity.ok("student dosn't exist");
     }
 
     @Override
     public ResponseEntity<?> findByName(String nom) {
-        Optional<Student> student=stuRepo.findByName(nom);
-        if (student.isPresent())
-            return ResponseEntity.ok(student.get());
+        List<Student> student=stuRepo.findByNameStu(nom);
+        if (student.size()>0)
+            return ResponseEntity.ok(student);
         else
-            return ResponseEntity.ok("student with name "+nom+" dosn't exist");
+            return ResponseEntity.ok("student with name "+nom+" dosn't found");
     }
 }

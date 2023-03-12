@@ -10,4 +10,7 @@ public interface TeacherServ {
     ResponseEntity<?> update(Teacher teacher,Long id_teacher);
     ResponseEntity<?> delete(Long id_teacher);
 
+    ResponseEntity<?> findByEmail(String email);
+    ResponseEntity<?> findByNom(String nom);
+
 }

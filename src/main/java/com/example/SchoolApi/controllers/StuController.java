@@ -13,21 +13,22 @@ public class StuController {
     @Autowired
     StuService stuService;
     @GetMapping("/getAll")
-    ResponseEntity<?> getAllProd(){
+    ResponseEntity<?> getAllStu(){
         return stuService.getAll();
     }
 
     @GetMapping("/getById/{id}")
-    ResponseEntity<?> getByIdProd(@PathVariable("id") Long id){return stuService.getById(id);}
+    ResponseEntity<?> getByIdStu(@PathVariable("id") Long id){return stuService.getById(id);}
 
     @PostMapping("/add")
-    ResponseEntity<?> addProd(@Valid @RequestBody Student student){return stuService.add(student);}
+    ResponseEntity<?> addStu(@Valid @RequestBody Student student){
+        return stuService.add(student);}
 
     @PatchMapping("update/{id}")
-    ResponseEntity<?> updateProd(@RequestBody Student student,@PathVariable("id") Long id){return stuService.update(student,id);}
+    ResponseEntity<?> updateStu(@RequestBody Student student,@PathVariable("id") Long id){return stuService.update(student,id);}
 
     @DeleteMapping("delete/{id}")
-    ResponseEntity<?> deleteProd(@PathVariable("id") Long id){
+    ResponseEntity<?> deleteStu(@PathVariable("id") Long id){
         return stuService.delete(id);
     }
 
