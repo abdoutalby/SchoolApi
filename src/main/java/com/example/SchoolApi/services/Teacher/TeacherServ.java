@@ -18,5 +18,7 @@ public interface TeacherServ {
     ResponseEntity<?> getAllStudent(Long idTeacher);
     ResponseEntity<?> deleteStudent(AddStudentRequest addStudentRequest);
     ResponseEntity<?> getAllClasses(Long idTeacher);
+    ResponseEntity<?> addClasse(AddStudentRequest addStudentRequest);
+    ResponseEntity<?> deleteClasse(AddStudentRequest addStudentRequest);
 
 }

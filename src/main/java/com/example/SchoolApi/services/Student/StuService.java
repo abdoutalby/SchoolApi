@@ -1,7 +1,11 @@
 package com.example.SchoolApi.services.Student;
 
+import com.example.SchoolApi.models.Classe;
 import com.example.SchoolApi.models.Student;
+import com.example.SchoolApi.models.Teacher;
 import com.example.SchoolApi.repositories.StuRepo;
+import com.example.SchoolApi.repositories.TeacherRepo;
+import com.example.SchoolApi.utils.AddStudentRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,6 +17,8 @@ public class StuService implements StuInterface{
 
     @Autowired
     StuRepo stuRepo;
+    @Autowired
+    TeacherRepo teacherRepo;
 
     @Override
     public ResponseEntity<?> getAll() {
@@ -83,5 +89,52 @@ public class StuService implements StuInterface{
         }
         else
             return ResponseEntity.ok("student not found");
+    }
+
+    @Override
+    public ResponseEntity<?> addTeacher(AddStudentRequest addStudentRequest) {
+        Optional<Student> student=stuRepo.findById(addStudentRequest.getIdStudent());
+        Optional<Teacher> teacher=teacherRepo.findById(addStudentRequest.getIdTeacher());
+        if (student.isPresent()){
+            if (teacher.isPresent()){
+                Student student1=student.get();
+                List<Teacher> teachers=student1.getTeachers();
+                teachers.add(teacher.get());
+                teacher.get().getStudents().add(student1);
+                stuRepo.save(student1);
+                return ResponseEntity.ok(student1);
+
+            }
+            else {
+                return ResponseEntity.ok("teacher not found");
+            }
+
+        }
+        else {
+            return ResponseEntity.ok("student not found");
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> deleteTeacher(AddStudentRequest addStudentRequest) {
+        Optional<Student> student=stuRepo.findById(addStudentRequest.getIdStudent());
+        Optional<Teacher> teacher=teacherRepo.findById(addStudentRequest.getIdTeacher());
+        if (student.isPresent()){
+            if (teacher.isPresent()){
+                Student student1=student.get();
+                student1.getTeachers().remove(teacher.get());
+                teacher.get().getStudents().remove(student1);
+                stuRepo.save(student1);
+                return ResponseEntity.ok(student1);
+
+            }
+            else {
+                return ResponseEntity.ok("teacher not found");
+            }
+
+        }
+        else {
+            return ResponseEntity.ok("student not found");
+        }
     }
 }

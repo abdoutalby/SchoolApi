@@ -6,4 +6,5 @@ import lombok.Data;
 public class AddStudentRequest {
     private Long idTeacher;
     private Long idStudent;
+    private Long idClass;
 }

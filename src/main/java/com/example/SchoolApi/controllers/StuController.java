@@ -2,6 +2,7 @@ package com.example.SchoolApi.controllers;
 
 import com.example.SchoolApi.models.Student;
 import com.example.SchoolApi.services.Student.StuService;
+import com.example.SchoolApi.utils.AddStudentRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,4 +38,13 @@ public class StuController {
 
     @GetMapping("getAllTeachers/{idSt}")
     ResponseEntity<?> getAllTeacher(@PathVariable("idSt") Long idSt){return stuService.getAllTeachers(idSt);}
+
+    @PatchMapping("/addTeacher")
+    ResponseEntity<?> addTeacher(@RequestBody AddStudentRequest addStudentRequest){return stuService.addTeacher(addStudentRequest);}
+
+    @PatchMapping("deleteTeacher")
+    ResponseEntity<?> deleteTeacher(@RequestBody AddStudentRequest addStudentRequest){return stuService.deleteTeacher(addStudentRequest);}
+
+
+
 }

@@ -52,4 +52,11 @@ public class TeacherController {
     @GetMapping("/getAllClasses/{idTeacher}")
     ResponseEntity<?> getAllClasses(@PathVariable("idTeacher") Long id){return teacherService.getAllClasses(id);}
 
+    @PatchMapping("/addClasse")
+    ResponseEntity<?> addClasse(@RequestBody AddStudentRequest addStudentRequest){return teacherService.addClasse(addStudentRequest);}
+
+    @PatchMapping("deleteClasse")
+    ResponseEntity<?> deleteClasse(@RequestBody AddStudentRequest addStudentRequest){return teacherService.deleteClasse(addStudentRequest);}
+
+
 }
