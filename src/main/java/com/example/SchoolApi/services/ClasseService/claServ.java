@@ -162,10 +162,7 @@ public claRepo claRepo;
         if (classe.isPresent()){
             if (teacher.isPresent()){
                 Classe classe1=classe.get();
-                List<Teacher> teachers=classe1.getTeachers();
-
-
-                teachers.add(teacher.get());
+                classe1.getTeachers().add(teacher.get());
                 log.info(classe.get().getTeachers().get(0).getNomTeacher());
                 claRepo.save(classe1);
                 return ResponseEntity.ok(classe1);
