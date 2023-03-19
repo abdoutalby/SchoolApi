@@ -1,5 +1,4 @@
 package com.example.SchoolApi.config;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.function.Function;
 
 @Service
@@ -50,10 +48,10 @@ public class JWTService {
     }
 
     public String generateToken(UserDetails userDetails ){
-        return generateToken(new HashMap<>(),userDetails);
+        return createToken(new HashMap<>(),userDetails);
     }
 
-    private  String generateToken(HashMap<String, Object> extraClaim, UserDetails userDetails) {
+    private  String createToken(HashMap<String, Object> extraClaim, UserDetails userDetails) {
         return Jwts.builder()
                 .setClaims(extraClaim)
                 .setSubject(userDetails.getUsername())

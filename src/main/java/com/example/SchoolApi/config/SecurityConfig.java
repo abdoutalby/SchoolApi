@@ -1,7 +1,6 @@
 package com.example.SchoolApi.config;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -14,9 +13,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
 
-@Configuration
-@EnableWebSecurity
-@RequiredArgsConstructor
+@Configuration // bch n9oulou li hya classe de configuration
+@EnableWebSecurity // bch nactiviw securite web lel app
+@RequiredArgsConstructor // taawedh @autowired lkol variable
 public class SecurityConfig {
 
     final jwtAuthentificationFilter jwtAuthentificationFilter;
@@ -38,7 +37,7 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider).//hne kotlou chkoun ili bch yaati token
                 addFilterBefore(jwtAuthentificationFilter, UsernamePasswordAuthenticationFilter.class)//hatitlou chkoun bch yaaml filtrage w aala asses ana type
                 .logout()
-                .logoutUrl("api/logout")//hedha lien li bch taaml alih logout
+                .logoutUrl("/api/auth/logout")//hedha lien li bch taaml alih logout
                 .addLogoutHandler(logoutHandler)//w hedha sayed li mas2oul aala logout
                 .logoutSuccessHandler(
                         ((request, response, authentication) -> SecurityContextHolder.clearContext())

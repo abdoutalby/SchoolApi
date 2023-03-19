@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Slf4j
+@Slf4j // annotation teb3a log
 public class claServ implements claService {
 @Autowired
 public claRepo claRepo;
